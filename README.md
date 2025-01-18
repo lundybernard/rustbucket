@@ -27,3 +27,6 @@ worry about isolated dev env later.
 - `cargo install cargo-generate`
 - In the interest of getting this rust bucket up and running asap, we will use cargo-generate as advised... 
 hopefully it will not make too much of a mess.
+- `cargo generate --git https://github.com/LundyBernard/avr-hal-template`
+- This generated a new file in the working directory, rustbucket/rustbucket/... 
+i'll deal with it for now, as I may need multiple sub-projects

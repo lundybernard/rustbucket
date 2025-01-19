@@ -12,7 +12,20 @@ instead of C
 
 ## Dev Log
 
-20240117
+20250118
+- Add environment variables to the conda env:
+  - `~/miniconda3/envs/rust-python/etc/conda/activate.d/rust.sh`
+    ```bash
+    export CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER=$HOME/miniconda3/envs/rust-python/bin/x86_64-conda-linux-gnu-cc
+    ```
+```
+> cat ~/miniconda3/envs/rust-python/etc/conda/activate.d/env_vars.sh 
+#export RUST_SRC_PATH=$HOME/miniconda3/envs/rust-python/lib/librust/src/rust/src
+export CARGO_HOME=$HOME/miniconda3/envs/rust-python/
+export RUSTUP_HOME=$HOME/miniconda3/envs/rust-python/.rustup
+```
+
+20250117
 - Setup IDE. I preffer to setup dev dependencies in isolated Conda environments,
 however, Rust makes this fairly difficult, and I may be forced to use system-level Rust for now :(
 - Following [A complete guide to running Rust on Arduino](https://blog.logrocket.com/complete-guide-running-rust-arduino)

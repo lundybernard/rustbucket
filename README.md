@@ -25,6 +25,26 @@ export CARGO_HOME=$HOME/miniconda3/envs/rust-python/
 export RUSTUP_HOME=$HOME/miniconda3/envs/rust-python/.rustup
 ```
 
+- Install rustup in the conda env
+- use custom install options
+- check the install paths are in the conda environment
+```
+  default host triple: x86_64-unknown-linux-gnu
+  default toolchain: nightly
+  profile: default
+  modify PATH variable: no
+```
+
+```
+> curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- --no-modify-path --default-toolchain nightly --profile default
+```
+- Install ravedude: `cargo install ravedude`
+- `sudo usermod -aG dialout $USER`
+
+- test flash the board: `ravedude /dev/ttyACM0 target/avr-atmega328p/release/rustbucket.elf
+- attempts to flash using ravedude failed with error 'board not found'
+- flash using avrdude was successful: `avrdude -p atmega328p -c arduino -P /dev/ttyACM0 -U flash:w:target/avr-atmega328p/release/rustbucket.elf:e`
+
 20250117
 - Setup IDE. I preffer to setup dev dependencies in isolated Conda environments,
 however, Rust makes this fairly difficult, and I may be forced to use system-level Rust for now :(

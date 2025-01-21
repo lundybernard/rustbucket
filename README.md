@@ -12,6 +12,17 @@ instead of C
 
 ## Dev Log
 
+20250121
+
+20250120
+- Begin Day 2 
+- Assisted partner in building an LED circuit
+- she successfully controlled the LED using her C code
+
+20250119
+- completed Day 1
+- successfully flashed blinky lite Rust code, verified with partner.
+
 20250118
 - Add environment variables to the conda env:
   - `~/miniconda3/envs/rust-python/etc/conda/activate.d/rust.sh`

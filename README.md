@@ -13,6 +13,10 @@ instead of C
 ## Dev Log
 
 20250121
+- assembled LED circuit
+- verified circuit with 5v input
+- move source code out of the redundant rustbucket folder
+- 
 
 20250120
 - Begin Day 2 

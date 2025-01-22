@@ -23,11 +23,12 @@ fn main() -> ! {
     let mut onboard_led = pins.d13.into_output();
     let mut cabin_light = pins.d12.into_output();
     let mut cabin_light_switch = pins.d2.into_pull_up_input();
+    let message = "...---...";  // no joke, I need work.
 
 
     loop {
         cabin_light_controller(&mut cabin_light_switch, &mut cabin_light);
-        blink_led(&mut onboard_led);
+        mcode(&mut onboard_led, message);
     }
 }
 
@@ -59,5 +60,33 @@ where P: OutputPin,
     arduino_hal::delay_ms(500);
     led.set_low()
         .unwrap();
+    arduino_hal::delay_ms(1000);
+}
+
+
+fn mcode<P>(led: &mut P, message: &str)
+where P: OutputPin,
+{
+    for c in message.chars() {
+        match c {
+            '.' => {
+                led.set_high().unwrap();
+                arduino_hal::delay_ms(100);
+                led.set_low().unwrap();
+            }
+            '-' => {
+                led.set_high().unwrap();
+                arduino_hal::delay_ms(300);
+                led.set_low().unwrap();
+            }
+            ' ' => {
+                arduino_hal::delay_ms(1000);
+            }
+            _ => {
+                led.set_low().unwrap();
+            }
+        }
+        arduino_hal::delay_ms(200);
+    }
     arduino_hal::delay_ms(1000);
 }

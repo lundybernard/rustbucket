@@ -17,6 +17,7 @@ instead of C
 - Added a switch-control function to manage the cabin light
 - Test: the switch now controls the cabin light!
 - Day 3 complete!
+- Added a secret message to the onboard LED
 
 20250121
 - assembled LED circuit

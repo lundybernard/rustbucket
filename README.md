@@ -16,7 +16,14 @@ instead of C
 - assembled LED circuit
 - verified circuit with 5v input
 - move source code out of the redundant rustbucket folder
-- 
+- Discovery! the onboard LED is controlled from pin d13, 
+and we can use it to drive our external LED as well.
+- activated external LED! driven by pin d12.
+- the onboard and external lights now blink in sequence,
+in the future, lets see about driving them asynchronously, or in parallel
+- Refactor: Extracted the led control code into a function 
+that can operate on any OutputPin
+- Day 2 complete!
 
 20250120
 - Begin Day 2 

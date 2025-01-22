@@ -2,6 +2,7 @@
 #![no_main]
 
 use panic_halt as _;
+use embedded_hal::digital::OutputPin;
 
 #[arduino_hal::entry]
 fn main() -> ! {
@@ -18,12 +19,29 @@ fn main() -> ! {
      * examples available.
      */
 
-    let mut led = pins.d13.into_output();
+    let mut onboard_led = pins.d13.into_output();
+    let mut external_led = pins.d12.into_output();
 
     loop {
-        led.toggle();
-        arduino_hal::delay_ms(1000);
-        led.toggle();
-        arduino_hal::delay_ms(100);
+        blink_led(&mut onboard_led);
+        blink_led(&mut external_led);
     }
+}
+
+
+fn blink_led<P>(led: &mut P)
+where P: OutputPin,
+{
+    led.set_high()
+        .unwrap();
+    arduino_hal::delay_ms(500);
+    led.set_low()
+        .unwrap();
+    arduino_hal::delay_ms(100);
+    led.set_high()
+        .unwrap();
+    arduino_hal::delay_ms(500);
+    led.set_low()
+        .unwrap();
+    arduino_hal::delay_ms(1000);
 }

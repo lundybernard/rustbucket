@@ -2,7 +2,8 @@
 #![no_main]
 
 use panic_halt as _;
-use embedded_hal::digital::OutputPin;
+use embedded_hal::digital::{InputPin, OutputPin};
+
 
 #[arduino_hal::entry]
 fn main() -> ! {
@@ -20,13 +21,28 @@ fn main() -> ! {
      */
 
     let mut onboard_led = pins.d13.into_output();
-    let mut external_led = pins.d12.into_output();
+    let mut cabin_light = pins.d12.into_output();
+    let mut cabin_light_switch = pins.d2.into_pull_up_input();
+
 
     loop {
+        cabin_light_controller(&mut cabin_light_switch, &mut cabin_light);
         blink_led(&mut onboard_led);
-        blink_led(&mut external_led);
     }
 }
+
+fn cabin_light_controller<PIn, POut>(input_pin: &mut PIn, output_pin: &mut POut)
+where
+    PIn: InputPin,
+    POut: OutputPin,
+{
+    if input_pin.is_high().unwrap() {
+        output_pin.set_high().unwrap();
+    } else {
+        output_pin.set_low().unwrap();
+    }
+}
+
 
 
 fn blink_led<P>(led: &mut P)

@@ -12,6 +12,12 @@ instead of C
 
 ## Dev Log
 
+20250122
+- Assembled dip-switch circuit
+- Added a switch-control function to manage the cabin light
+- Test: the switch now controls the cabin light!
+- Day 3 complete!
+
 20250121
 - assembled LED circuit
 - verified circuit with 5v input
@@ -24,6 +30,7 @@ in the future, lets see about driving them asynchronously, or in parallel
 - Refactor: Extracted the led control code into a function 
 that can operate on any OutputPin
 - Day 2 complete!
+- Completed 3 exercise with partner
 
 20250120
 - Begin Day 2 
